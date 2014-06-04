@@ -1,0 +1,22 @@
+{
+  "name": "rind-hash-gulp",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/gulp/bin/gulp.js lint && ./node_modules/gulp/bin/gulp.js test"
+  },
+  "author": "Matthew Hadley (https://github.com/diffsky)",
+  "license": "MIT",
+  "devDependencies": {
+    "minimist": "^0.1.0",
+    "gulp-jsbeautifier": "0.0.2",
+    "confidence": "^0.12.1",
+    "gulp-eslint": "^0.1.7",
+    "gulp": "^3.7.0",
+    "gulp-diff": "^0.1.4"
+  },
+  "dependencies": {
+    "gulp-buster": "^0.2.1"
+  }
+}
