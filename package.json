@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/gulp/bin/gulp.js lint && ./node_modules/gulp/bin/gulp.js test"
+    "test": "alias gulp='./node_modules/gulp/bin/gulp.js';gulp lint && gulp test --mapping dev && gulp test"
   },
   "author": "Matthew Hadley (https://github.com/diffsky)",
   "license": "MIT",
@@ -14,9 +14,11 @@
     "confidence": "^0.12.1",
     "gulp-eslint": "^0.1.7",
     "gulp": "^3.7.0",
-    "gulp-diff": "^0.1.4"
+    "gulp-diff": "^0.1.4",
+    "rimraf": "^2.2.8"
   },
   "dependencies": {
-    "gulp-buster": "^0.2.1"
+    "gulp-buster": "^0.2.1",
+    "mkdirp": "^0.5.0"
   }
 }
