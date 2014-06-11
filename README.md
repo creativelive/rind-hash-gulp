@@ -45,6 +45,7 @@ var opts = {
   output: // output directory
   hash: // path and filename for hash.json
   mapping: // if set to `dev` then hash.json will point to original files
+  symbol: // separator between md5 and file extension, defaults to '.'
   verbose: // output process
 };
 */
