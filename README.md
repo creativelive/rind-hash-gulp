@@ -1,6 +1,6 @@
 # [![rind](https://raw.githubusercontent.com/creativelive/rind/master/assets/rind-32.png)](https://github.com/creativelive/rind) rind-hash-gulp [![](https://travis-ci.org/creativelive/rind-hash-gulp.svg)](https://travis-ci.org/creativelive/rind-hash-gulp)
 
-Gulp tasks to generate an md5 mapped directory of assets.
+Gulp task to generate an md5 mapped directory of assets.
 
 Given filesystem input:
 ```
