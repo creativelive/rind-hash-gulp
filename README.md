@@ -45,6 +45,7 @@ var opts = {
   output: // output directory
   hash: // path and filename for hash.json
   mapping: // if set to `dev` then hash.json will point to original files
+  copy: // glob pattern of files to just copy instead of md5'ing
   symbol: // separator between file path and md5, defaults to '.'
   verbose: // output process
 };

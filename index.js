@@ -4,6 +4,7 @@ var mkdirp = require('mkdirp');
 var path = require('path');
 var bust = require('gulp-buster');
 var fs = require('fs');
+var minimatch = require('minimatch');
 
 module.exports = function hash(gulp, conf) {
   conf = conf || {};
@@ -32,15 +33,15 @@ module.exports = function hash(gulp, conf) {
           hash = {};
         }
         var hashMap = {};
-        if (conf.mapping === 'dev') {
-          Object.keys(hash).forEach(function(c) {
+
+        Object.keys(hash).forEach(function(c) {
+          if (conf.mapping === 'dev' || (conf.copy && minimatch(c, conf.copy))) {
             hashMap['/' + c] = '/' + c;
-          });
-        } else {
-          Object.keys(hash).forEach(function(c) {
+          } else {
             hashMap['/' + c] = '/' + c.substr(0, (c.length - path.extname(c).length)) + conf.symbol + hash[c] + path.extname(c);
-          });
-        }
+          }
+        });
+
         fs.writeFileSync(conf.hash, JSON.stringify(hashMap, 0, 2));
         var hashes = Object.keys(hashMap);
         if (hashes.length) {

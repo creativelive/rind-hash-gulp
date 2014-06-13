@@ -11,6 +11,7 @@ module.exports = function(gulp, conf) {
     cwd: path.join(conf.gwd, 'test', 'src'),
     output: path.join(conf.gwd, 'test', 'out'),
     hash: path.join(conf.gwd, 'test', 'out', 'hash.json'),
+    copy: '**/*.txt',
     mapping: mapping,
     verbose: true
   };
@@ -27,7 +28,7 @@ module.exports = function(gulp, conf) {
       prod: {
         '/img/rind.png': '/img/rind.d6bc63f.png',
         '/js/hello.js': '/js/hello.d81ffe3.js',
-        '/txt/sample.txt': '/txt/sample.6f5902a.txt'
+        '/txt/sample.txt': '/txt/sample.txt'
       }
     };
     expected = expected[mapping];
