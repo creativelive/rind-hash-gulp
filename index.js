@@ -12,6 +12,25 @@ module.exports = function hash(gulp, conf) {
   conf.glob = conf.glob || '**/*.*';
   conf.symbol = conf.symbol || '.';
 
+  if (conf.copy) {
+    if (typeof conf.copy === 'string') {
+      conf.copy = [conf.copy];
+    }
+  }
+
+  function copyMatch(asset) {
+    var match = false;
+    if (!conf.copy) {
+      return false;
+    }
+    conf.copy.forEach(function(glob) {
+      if (minimatch(asset, glob)) {
+        match = true;
+      }
+    });
+    return match;
+  }
+
   return function(cb) {
     cb = cb || function() {};
 
@@ -35,7 +54,7 @@ module.exports = function hash(gulp, conf) {
         var hashMap = {};
 
         Object.keys(hash).forEach(function(c) {
-          if (conf.mapping === 'dev' || (conf.copy && minimatch(c, conf.copy))) {
+          if (conf.mapping === 'dev' || copyMatch(c)) {
             hashMap['/' + c] = '/' + c;
           } else {
             hashMap['/' + c] = '/' + c.substr(0, (c.length - path.extname(c).length)) + conf.symbol + hash[c] + path.extname(c);
