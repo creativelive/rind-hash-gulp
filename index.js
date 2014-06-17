@@ -69,7 +69,7 @@ module.exports = function hash(gulp, conf) {
               console.log(hashMap[c]);
             }
             mkdirp.sync(path.dirname(path.join(conf.output, hashMap[c])));
-            fs.createReadStream(path.join(conf.cwd, c)).pipe(fs.createWriteStream(path.join(conf.output, hashMap[c])));
+            fs.writeFileSync(path.join(conf.output, hashMap[c]), fs.readFileSync(path.join(conf.cwd, c), 'utf8'));
           });
         }
         cb();

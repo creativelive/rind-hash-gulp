@@ -35,9 +35,11 @@ module.exports = function(gulp, conf) {
     var hashFile = require(opts.hash);
     for (var i in expected) {
       if (!fs.existsSync(path.join(opts.output, expected[i]))) {
+        console.log('missing:', expected[i]);
         gulp.fail = true;
       }
       if (expected[i] !== hashFile[i]) {
+        console.log('expected:', expected[i], 'got:', hashFile[i]);
         gulp.fail = true;
       }
     }
