@@ -11,6 +11,8 @@ module.exports = function hash(gulp, conf) {
   conf.gwd = conf.gwd || process.cwd();
   conf.glob = conf.glob || '**/*.*';
   conf.symbol = conf.symbol || '.';
+  conf.preservePath = conf.preservePath || true;
+  conf.md5Length = conf.md5Length || 7;
 
   if (conf.copy) {
     if (typeof conf.copy === 'string') {
@@ -36,7 +38,7 @@ module.exports = function hash(gulp, conf) {
 
     bust.config({
       algo: 'md5',
-      length: 7
+      length: conf.md5Length
     });
     gulp.src(conf.glob, {
       cwd: conf.cwd
@@ -57,7 +59,15 @@ module.exports = function hash(gulp, conf) {
           if (conf.mapping === 'dev' || copyMatch(c)) {
             hashMap['/' + c] = '/' + c;
           } else {
-            hashMap['/' + c] = '/' + c.substr(0, (c.length - path.extname(c).length)) + conf.symbol + hash[c] + path.extname(c);
+            var loc = '/';
+            if(conf.preservePath) {
+              loc += c.substr(0, (c.length - path.extname(c).length)) + conf.symbol + hash[c] + path.extname(c);
+            } else {
+              loc += hash[c] + path.extname(c);
+              // split into a 2 char length leading subdirectory
+              loc = loc.substr(0,3) + '/' + loc.substr(3);
+            }
+            hashMap['/' + c] = loc;
           }
         });
 
