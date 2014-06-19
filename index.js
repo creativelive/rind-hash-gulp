@@ -60,12 +60,12 @@ module.exports = function hash(gulp, conf) {
             hashMap['/' + c] = '/' + c;
           } else {
             var loc = '/';
-            if(conf.preservePath) {
+            if (conf.preservePath) {
               loc += c.substr(0, (c.length - path.extname(c).length)) + conf.symbol + hash[c] + path.extname(c);
             } else {
               loc += hash[c] + path.extname(c);
               // split into a 2 char length leading subdirectory
-              loc = loc.substr(0,3) + '/' + loc.substr(3);
+              loc = loc.substr(0, 3) + '/' + loc.substr(3);
             }
             hashMap['/' + c] = loc;
           }
@@ -79,7 +79,7 @@ module.exports = function hash(gulp, conf) {
               console.log(hashMap[c]);
             }
             mkdirp.sync(path.dirname(path.join(conf.output, hashMap[c])));
-            fs.writeFileSync(path.join(conf.output, hashMap[c]), fs.readFileSync(path.join(conf.cwd, c), 'utf8'));
+            fs.writeFileSync(path.join(conf.output, hashMap[c]), fs.readFileSync(path.join(conf.cwd, c)));
           });
         }
         cb();
