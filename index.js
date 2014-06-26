@@ -6,7 +6,7 @@ var bust = require('gulp-buster');
 var fs = require('fs');
 var minimatch = require('minimatch');
 
-module.exports = function hash(gulp, conf) {
+module.exports = function hash(gulp, conf, callback) {
   conf = conf || {};
   conf.gwd = conf.gwd || process.cwd();
   conf.glob = conf.glob || '**/*.*';
@@ -34,7 +34,7 @@ module.exports = function hash(gulp, conf) {
   }
 
   return function(cb) {
-    cb = cb || function() {};
+    cb = callback || function() {};
 
     bust.config({
       algo: 'md5',
